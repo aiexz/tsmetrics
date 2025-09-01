@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  tsmetrics:
+    image: ghcr.io/aiexz/tsmetrics:latest
+    container_name: tsmetrics
+    restart: unless-stopped
+    # environment:
+    #   # OAuth mode:
+    #   # OAUTH_CLIENT_ID: xxx
+    #   # OAUTH_CLIENT_SECRET: yyy
+    #   # TAILNET_NAME: my-tailnet
+    #
+    #   # API key mode:
+    #   # TS_API_KEY: tskey-zzzz
+    #   # TAILNET_NAME: my-tailnet
+    #
+    #   # Local mode (no central API; network log metrics disabled):
+    #   # LOCAL_MODE: "true"
+    #   # (no tailnet name needed)
+    # Command (auth mode auto-detected from env: LOCAL_MODE / TS_API_KEY / OAUTH_* )
+    command: ["--wait-secs=240", "--addr=:9100", "--resolve-names"]
+    # Local mode still needs the socket flag if path differs from default:
+    # command: ["--wait-secs=240", "--addr=:9100", "--local-socket=/var/run/tailscale/tailscaled.sock"]
+    ports:
+      - "9100:9100"   # Prometheus scrape endpoint
+    # volumes:
+    #   - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock:ro

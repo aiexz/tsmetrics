@@ -1,0 +1,19 @@
+# Build and VCS artifacts
+.git
+.gitignore
+.github
+Dockerfile
+README.md
+LICENSE
+Makefile
+*.log
+.idea
+.vscode
+
+# Go build cache & modules
+/go/pkg
+**/vendor
+**/*.test
+
+# Local env
+.env
