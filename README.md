@@ -35,8 +35,19 @@ tailscale_rx_bytes
 tailscale_tx_bytes
 tailscale_rx_packets
 tailscale_tx_packets
+tailscale_host_created_timestamp
+tailscale_host_last_seen_timestamp
+tailscale_host_expires_timestamp
 ```
 
 You can then configure your prometheus instance to scrap the exporter and from there you can visualize the metrics with your visualization tool of choice.
 
 Notice that [Network flow logs](https://tailscale.com/kb/1219/network-flow-logs#network-logs-structure) are not available in the free Tailscale plan. 
+
+## Local mode
+You can pass tailscale socket to the docker container and work without requiring an api key or ouath key
+
+### Restrictions
+- No version (no "update availiable")
+- Traffic flow is counted from the host with the socket
+- Tags are not availiable
